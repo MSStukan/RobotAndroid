@@ -1,0 +1,425 @@
+#:import threading threading
+
+
+<GUI>:
+#####        ######### Main Grid ##########        #####
+    GridLayout:
+        id: id1
+        cols:3
+        size: root.width , root.height
+        row_default_height: root.height
+
+#####        ######### LEFT Grid##########        #####
+        RelativeLayout:
+            id: LeftGrid
+            size_hint_x: 0.3
+            canvas.before:
+                Color:
+                    rgba: 60/255, 60/255, 60/255, 0.5    # Left grid canvas color
+                Rectangle:
+                    size: LeftGrid.width, LeftGrid.height
+            GridLayout:
+                rows:8
+
+                RelativeLayout:
+                    id: Batt
+                    canvas.before:
+                        Color:
+                            rgba: 160/255, 160/255, 160/255, 1
+                        Line:
+                            rectangle:(0,0,Batt.width,Batt.height)
+                            width:0.5
+
+                    RelativeLayout:
+                        id:Bat
+
+                        size:10, 10
+                        Label:
+                            id: BATT
+                            sBt:0
+                            colOf: 1, 0, 0.5, 1
+                            text: '[size=11][b]Battery[/b][/size]'
+                            markup: True
+                            pos:0, 1/3*self.height
+                            canvas:
+                                Color:
+                                    rgba: 1, 0, 0 , 0.5
+                                Rectangle:
+                                    size: 40,20
+                                    pos: 1/2*Bat.width-20, 3/4*Bat.height-5
+                            canvas.before:
+                                Color:
+                                    rgba: 0.05, 0.05, 0.05 , 0.5
+                                Rectangle:
+                                    size: Bat.width-10,20
+                                    pos: 1/2*Bat.width-1/2*BATT.width+5, 3/8*Bat.height
+                            canvas:
+
+                                Color:
+                                    rgba: self.colOf #1, 0.05, 0.05 , 1
+                                Rectangle:
+                                    id:pepe
+                                    pos: 5, 3/8*Bat.height+2
+                                    size: self.sBt,16
+                        Label:
+                            id:valBattery
+                            font_size: 11
+                            pos:0, -1/3*self.height
+
+                BoxLayout:
+                #########      GYRO    #######
+                    ####        GyroX       ###
+                RelativeLayout:
+                    id: GyX
+                    canvas.before:
+                        Color:
+                            rgba: 160/255, 160/255, 160/255, 1
+                        Line:
+                            rectangle:(0,0,GyX.width,GyX.height)
+                            width:0.5
+
+                    RelativeLayout:
+                        id:GyXx
+
+                        size:10, 10
+                        Label:
+                            id: GyroX
+                            sGx:0
+                            text: '[size=11][b]GyroX[/b][/size]'
+                            markup: True
+                            pos:0, 1/3*self.height
+                            canvas:
+                                Color:
+                                    rgba: 1, 0, 0 , 0.5
+                                Rectangle:
+                                    size: 40,20
+                                    pos: 1/2*GyXx.width-20, 3/4*GyXx.height-5
+                            canvas.before:
+                                Color:
+                                    rgba: 0.05, 0.05, 0.05 , 0.5
+                                Rectangle:
+                                    size: GyXx.width-10,20
+                                    pos: 1/2*GyXx.width-1/2*GyroX.width+5, 3/8*GyXx.height
+                            canvas:
+
+                                Color:
+                                    rgba: 1, 0.05, 0.05 , 1
+                                Rectangle:
+                                    id:pepe
+                                    pos: 1/2*GyXx.width, 3/8*GyXx.height+2
+                                    size: self.sGx,16
+                        Label:
+                            id:valGyroX
+                            font_size: 11
+                            pos:0, -1/3*self.height
+
+                    ####        GyroY       ###
+                RelativeLayout:
+                    id: GyY
+                    canvas.before:
+                        Color:
+                            rgba: 160/255, 160/255, 160/255, 1
+                        Line:
+                            rectangle:(0,0,GyY.width,GyY.height)
+                            width:0.5
+
+                    RelativeLayout:
+                        id:GyYy
+
+                        size:10, 10
+                        Label:
+                            id: GyroY
+                            sGy:0
+                            text: '[size=11][b]GyroY[/b][/size]'
+                            markup: True
+                            pos:0, 1/3*self.height
+                            canvas:
+                                Color:
+                                    rgba: 1, 0, 0 , 0.5
+                                Rectangle:
+                                    size: 40,20
+                                    pos: 1/2*GyYy.width-20, 3/4*GyYy.height-5
+                            canvas.before:
+                                Color:
+                                    rgba: 0.05, 0.05, 0.05 , 0.5
+                                Rectangle:
+                                    size: GyYy.width-10,20
+                                    pos: 1/2*GyYy.width-1/2*GyroY.width+5, 3/8*GyYy.height
+                            canvas:
+
+                                Color:
+                                    rgba: 1, 0.05, 0.05 , 1
+                                Rectangle:
+                                    id:pepe
+                                    pos: 1/2*GyYy.width, 3/8*GyYy.height+2
+                                    size: self.sGy,16
+                        Label:
+                            id:valGyroY
+                            font_size: 11
+                            pos:0, -1/3*self.height
+                    ####        GyroZ       ###
+                RelativeLayout:
+                    id: GyZ
+                    canvas.before:
+                        Color:
+                            rgba: 160/255, 160/255, 160/255, 1
+                        Line:
+                            rectangle:(0,0,GyZ.width,GyZ.height)
+                            width:0.5
+
+                    RelativeLayout:
+                        id:GyZz
+
+                        size:10, 10
+                        Label:
+                            id: GyroZ
+                            sGz:0
+                            text: '[size=11][b]GyroZ[/b][/size]'
+                            markup: True
+                            pos:0, 1/3*self.height
+                            canvas:
+                                Color:
+                                    rgba: 1, 0, 0 , 0.5
+                                Rectangle:
+                                    size: 40,20
+                                    pos: 1/2*GyZz.width-20, 3/4*GyZz.height-5
+                            canvas.before:
+                                Color:
+                                    rgba: 0.05, 0.05, 0.05 , 0.5
+                                Rectangle:
+                                    size: GyZz.width-10,20
+                                    pos: 1/2*GyZz.width-1/2*GyroZ.width+5, 3/8*GyZz.height
+                            canvas:
+
+                                Color:
+                                    rgba: 1, 0.05, 0.05 , 1
+                                Rectangle:
+                                    id:pepe
+                                    pos: 1/2*GyZz.width, 3/8*GyZz.height+2
+                                    size: self.sGz,16
+                        Label:
+                            id:valGyroZ
+                            font_size: 11
+                            pos:0, -1/3*self.height
+              #########      ACCEL   #######
+                    ####        AccelX       ###
+                RelativeLayout:
+                    id: AcX
+                    canvas.before:
+                        Color:
+                            rgba: 160/255, 160/255, 160/255, 1
+                        Line:
+                            rectangle:(0,0,AcX.width,AcX.height)
+                            width:0.5
+
+                    RelativeLayout:
+                        id:AcXx
+
+                        size:10, 10
+                        Label:
+                            id: AccelX
+                            sAx:0
+                            text: '[size=11][b]AccelX[/b][/size]'
+                            markup: True
+                            pos:0, 1/3*self.height
+                            canvas:
+                                Color:
+                                    rgba: 1, 0, 0 , 0.5
+                                Rectangle:
+                                    size: 40,20
+                                    pos: 1/2*AcXx.width-20, 3/4*AcXx.height-5
+                            canvas.before:
+                                Color:
+                                    rgba: 0.05, 0.05, 0.05 , 0.5
+                                Rectangle:
+                                    size: AcXx.width-10,20
+                                    pos: 1/2*AcXx.width-1/2*AccelX.width+5, 3/8*AcXx.height
+                            canvas:
+
+                                Color:
+                                    rgba: 1, 0.05, 0.05 , 1
+                                Rectangle:
+                                    id:pepe
+                                    pos: 1/2*AcXx.width, 3/8*AcXx.height+2
+                                    size: self.sAx,16
+                        Label:
+                            id:valAccelX
+                            font_size: 11
+                            pos:0, -1/3*self.height
+
+                   ####        AccelY      ###
+                RelativeLayout:
+                    id: AcY
+                    canvas.before:
+                        Color:
+                            rgba: 160/255, 160/255, 160/255, 1
+                        Line:
+                            rectangle:(0,0,AcY.width,AcY.height)
+                            width:0.5
+
+                    RelativeLayout:
+                        id:AcYy
+
+                        size:10, 10
+                        Label:
+                            id: AccelY
+                            sAy:0
+                            text: '[size=11][b]AccelY[/b][/size]'
+                            markup: True
+                            pos:0, 1/3*self.height
+                            canvas:
+                                Color:
+                                    rgba: 1, 0, 0 , 0.5
+                                Rectangle:
+                                    size: 40,20
+                                    pos: 1/2*AcYy.width-20, 3/4*AcYy.height-5
+                            canvas.before:
+                                Color:
+                                    rgba: 0.05, 0.05, 0.05 , 0.5
+                                Rectangle:
+                                    size: AcYy.width-10,20
+                                    pos: 1/2*AcYy.width-1/2*AccelY.width+5, 3/8*AcYy.height
+                            canvas:
+
+                                Color:
+                                    rgba: 1, 0.05, 0.05 , 1
+                                Rectangle:
+                                    id:pepe
+                                    pos: 1/2*AcYy.width, 3/8*AcYy.height+2
+                                    size: self.sAy,16
+                        Label:
+                            id:valAccelY
+                            font_size: 11
+                            pos:0, -1/3*self.height
+
+                   ####        AccelZ      ###
+                RelativeLayout:
+                    id: AcZ
+                    canvas.before:
+                        Color:
+                            rgba: 160/255, 160/255, 160/255, 1
+                        Line:
+                            rectangle:(0,0,AcZ.width,AcZ.height)
+                            width:0.5
+
+                    RelativeLayout:
+                        id:AcZz
+
+                        size:10, 10
+                        Label:
+                            id: AccelZ
+                            sAz:0
+                            text: '[size=11][b]AccelZ[/b][/size]'
+                            markup: True
+                            pos:0, 1/3*self.height
+                            canvas:
+                                Color:
+                                    rgba: 1, 0, 0 , 0.5
+                                Rectangle:
+                                    size: 40,20
+                                    pos: 1/2*AcZz.width-20, 3/4*AcZz.height-5
+                            canvas.before:
+                                Color:
+                                    rgba: 0.05, 0.05, 0.05 , 0.5
+                                Rectangle:
+                                    size: AcZz.width-10,20
+                                    pos: 1/2*AcZz.width-1/2*AccelZ.width+5, 3/8*AcZz.height
+                            canvas:
+
+                                Color:
+                                    rgba: 1, 0.05, 0.05 , 1
+                                Rectangle:
+                                    id:pepe
+                                    pos: 1/2*AcZz.width, 3/8*AcZz.height+2
+                                    size: self.sAz,16
+                        Label:
+                            id:valAccelZ
+                            font_size: 11
+                            pos:0, -1/3*self.height
+
+#####        ######### MID Grid With Joystick##########        #####
+        RelativeLayout:
+            id: id2
+            size_hint_x: 0.8
+            Label:
+                id: padX
+                pos: 0,50
+                valVw: 33
+              #  text: '{}'.format(asd.valX)
+            Label:
+                id: padY
+                pos: 0, 0
+            Label:
+                id: padYY
+                pos: 0, 100
+            Label:
+                id: padXX
+                pos: 0, 150
+
+                ######### JOYSTICK ##########
+            RelativeLayout:
+                size_hint: None, None
+                size: 200, 200
+                pos: (self.parent.width/2 - (self.width/2)), 0
+                id: GridUnderJoy
+                valX: self.width
+                valY: self.height
+
+                canvas.before:
+                    Color:
+                        rgba: 160/255, 160/255, 160/255, 1
+                    Line:
+                        rectangle:(0,0,200,200)
+                        width:0.3
+                      #  size: GridUnderJoy.width, GridUnderJoy.height
+
+                canvas:
+                    Color:
+                        rgba: 1, 0, 0, 1
+                    Line:
+                        circle: (100,100, 100)
+                        width: 2                 ### szerokosć lini ###
+
+
+                Circle:
+                    canvas.before:
+                        Color:
+                            rgba: 115/255, 115/255, 115/255, 1
+                        Ellipse:
+                            pos: self.pos
+                            size: self.size
+            
+                    id: cir
+                    size_hint: None, None
+                    size: 50, 50
+                    drag_rectangle: self.x, self.y, self.width, self.height
+                    drag_timeout: 1000000000
+                    drag_distance: 0
+                    pos: (GridUnderJoy.width/2)-(self.width/2),(GridUnderJoy.height/2)-(self.height/2)
+
+                    po1 : self.pos
+
+
+#####        ######### RIGHT Grid ##########        #####
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_x: 0.2
+            BoxLayout
+                orientation: "vertical"
+                Button:
+                Button:
+            BoxLayout:
+                orientation: "vertical"
+                Button:
+                    text: 'Stop UDP'
+                    on_press: root.Stop_UDP
+                Button:
+            BoxLayout:
+                orientation: "vertical"
+                Button:
+                Button:
+                    text: 'run thread'
+                    on_press: threading.Thread(target=root.do_something).start()
+
+
+
